@@ -1,0 +1,20 @@
+class Solution {List <TreeNode> q= new ArrayList<>();
+                TreeNode prev=null,curr=null;
+    public void recover(TreeNode root) {
+        if (root==null)
+        return ;
+        recover(root.left);
+        if(curr!=null)
+        {if(curr.val>root.val)
+        {q.add(curr); q.add(root);}
+         }
+        curr=root;
+        recover(root.right);
+    }
+    public void recoverTree(TreeNode root) {
+        recover(root);
+        int a= q.get(0).val;
+        q.get(0).val=q.get(q.size()-1).val;
+        q.get(q.size()-1).val=a;
+    }
+}
