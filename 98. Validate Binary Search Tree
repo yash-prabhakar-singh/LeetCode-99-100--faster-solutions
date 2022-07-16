@@ -1,0 +1,25 @@
+class Solution {TreeNode prev=null;
+                int c=0; boolean b=true;
+                
+                 public void isValid(TreeNode root) {
+        if (root==null)
+        {c++; return;}
+                     isValid(root.left);
+                     if(prev==null&&c==1)
+                         prev=root;
+                     else
+                     {if(root.val<=prev.val)
+                      b=false;
+                     }
+                     prev=root;
+                     
+                     isValid(root.right);
+    }
+                
+    public boolean isValidBST(TreeNode root) {
+        if(root==null)
+            return true;
+        isValid(root);
+        return b;
+    }
+}
