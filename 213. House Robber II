@@ -1,0 +1,40 @@
+class Solution {
+   int helper(int[] nums, int[] dp, int i, int n)
+   {
+       if(i==0)
+       {
+           int a= nums[i]+helper(nums,dp,i+2,n);
+           
+           int b= helper(nums,dp,i+1,n);
+           
+           return Math.max(a,b);
+       }
+       
+       if(i>=n)
+           return 0;
+       if(i==n-1)
+       {
+               return nums[i];
+       }
+       
+       if(dp[i]!=-1)
+           return dp[i];
+       
+       int a= nums[i]+helper(nums,dp,i+2,n);
+           int b= helper(nums,dp,i+1,n);
+           
+           return dp[i]=Math.max(a,b);
+       
+   }
+    
+    public int rob(int[] nums) {
+        int n= nums.length;
+        int dp[]= new int[n];
+        Arrays.fill(dp,-1);
+       
+        int a= nums[0]+ helper(nums,dp,2,n-1);
+        Arrays.fill(dp,-1);
+        int b= helper(nums,dp,1,n);
+        return Math.max(a,b);
+    }
+}
